@@ -1,0 +1,397 @@
+LOW LEVEL
+
+
+1.console.log(a);
+var a = 10;
+undefined
+2
+console.log(a);
+let a = 20;
+
+
+What will be the output?
+error variable is not declared 
+
+3
+greet();
+
+function greet() {
+  console.log("Hello World");
+}
+
+What will be the output?
+
+Hello World
+
+MEDIUM LEVEL
+
+
+4
+var x = 5;
+
+function test() {
+  console.log(x);
+  var x = 10;
+}
+
+test();
+
+What will be the output?
+5
+
+5
+console.log(typeof null);
+null
+What will be the output?
+
+6
+console.log(typeof NaN);
+
+
+What will be the output?
+ 
+ i don't know
+7
+let a = 10;
+
+{
+  let a = 20;
+  console.log(a);
+}
+
+console.log(a);
+
+
+What will be the output?
+Error since it is the scope varibale not a functional varibale
+
+
+ HARD LEVEL (MNC Level)
+8
+console.log(a);
+var a = 10;
+
+function a() {
+  console.log("Hello");
+}
+
+console.log(a);
+
+What will be the output?
+undefined
+Hello
+
+9
+function test() {
+  console.log(a);
+  if (true) {
+    var a = 10;
+  }
+}
+
+test();
+
+What will be the output?
+10
+
+10
+var a = 1;
+
+function demo() {
+  console.log(a);
+  var a = 2;
+  console.log(a);
+}
+
+demo();
+
+What will be the output?
+1
+2
+--------------------------------
+
+
+
+## 1️ Question
+
+```javascript
+console.log(a);
+var a = 10;
+```
+
+**Answer**
+
+```
+undefined
+```
+
+**Explanation**
+
+`var` is hoisted to the top but **value assignment happens later**.
+
+Internally JS reads it as:
+
+```javascript
+var a;
+console.log(a);
+a = 10;
+```
+
+---
+
+## 2️ Question
+
+```javascript
+console.log(a);
+let a = 20;
+```
+
+**Answer**
+
+```
+ReferenceError: Cannot access 'a' before initialization
+```
+
+**Explanation**
+
+`let` is hoisted but stays in **Temporal Dead Zone (TDZ)** until declaration.
+
+---
+
+## 3️ Question
+
+```javascript
+greet();
+
+function greet() {
+  console.log("Hello World");
+}
+```
+
+**Answer**
+
+```
+Hello World
+```
+
+**Explanation**
+
+Function declarations are **fully hoisted**.
+
+---
+
+# MEDIUM LEVEL
+
+---
+
+## 4️ Question
+
+```javascript
+var x = 5;
+
+function test() {
+  console.log(x);
+  var x = 10;
+}
+
+test();
+```
+
+**Answer**
+
+```
+undefined
+```
+
+**Explanation**
+
+Inside the function:
+
+```javascript
+function test(){
+   var x;
+   console.log(x);
+   x = 10;
+}
+```
+
+Local `x` shadows global `x`.
+
+---
+
+## 5️ Question
+
+```javascript
+console.log(typeof null);
+```
+
+**Answer**
+
+```
+object
+```
+
+**Explanation**
+
+This is a **known JavaScript bug**.
+`null` is a primitive but `typeof` returns `"object"`.
+
+---
+
+## 6️ Question
+
+```javascript
+console.log(typeof NaN);
+```
+
+**Answer**
+
+```
+number
+```
+
+**Explanation**
+
+`NaN` means **Not-a-Number**, but its type is still **number**.
+
+---
+
+## 7️ Question
+
+```javascript
+let a = 10;
+
+{
+  let a = 20;
+  console.log(a);
+}
+
+console.log(a);
+```
+
+**Answer**
+
+```
+20
+10
+```
+
+**Explanation**
+
+`let` is **block scoped**.
+
+Inside block → `20`
+Outside block → `10`
+
+---
+
+# HARD LEVEL (MNC)
+
+---
+
+## 8️ Question
+
+```javascript
+console.log(a);
+var a = 10;
+
+function a() {
+  console.log("Hello");
+}
+
+console.log(a);
+```
+
+**Answer**
+
+```
+function a() { console.log("Hello"); }
+10
+```
+
+**Explanation**
+
+Function hoisting happens before variable assignment.
+
+Order:
+
+1. Function hoisted
+2. Variable declared
+3. Variable assigned value later
+
+---
+
+## 9️ Question
+
+```javascript
+function test() {
+  console.log(a);
+  if (true) {
+    var a = 10;
+  }
+}
+
+test();
+```
+
+**Answer**
+
+```
+undefined
+```
+
+**Explanation**
+
+`var` is **function scoped**, not block scoped.
+
+Internally:
+
+```javascript
+function test(){
+  var a;
+  console.log(a);
+  a = 10;
+}
+```
+
+---
+
+## 10 Question
+
+```javascript
+var a = 1;
+
+function demo() {
+  console.log(a);
+  var a = 2;
+  console.log(a);
+}
+
+demo();
+```
+
+**Answer**
+
+```
+undefined
+2
+```
+
+**Explanation**
+
+Inside function:
+
+```javascript
+function demo(){
+   var a;
+   console.log(a);
+   a = 2;
+   console.log(a);
+}
+```
+
+Local variable shadows global variable.
+
+---
+
+
