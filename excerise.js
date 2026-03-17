@@ -63,3 +63,8 @@ if(typeof valueCheck =='number')
 else{
     console.log("false")
 }
+
+let nullCollestion;
+nullCollestion =nullCollestion ?? 'hello';
+console.log(nullCollestion)
+
